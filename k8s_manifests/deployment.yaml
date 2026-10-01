@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-api-deployment
+  labels:
+    app: agent-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agent-api
+  template:
+    metadata:
+      labels:
+        app: agent-api
+    spec:
+      containers:
+      - name: agent-api
+        image: agent-api:v1
+        imagePullPolicy: Never  # Crucial: Tells k8s to use the local image we loaded
+        ports:
+        - containerPort: 8000
+        env:
+        - name: GOOGLE_API_KEY
+          value: "your_api_key"  # Replace with your actual API key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agent-api-service
+spec:
+  type: NodePort
+  selector:
+    app: agent-api
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      nodePort: 30007
