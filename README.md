@@ -1,4 +1,3 @@
-```markdown
 # Autonomous Agentic RAG System via MCP & Kubernetes
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
