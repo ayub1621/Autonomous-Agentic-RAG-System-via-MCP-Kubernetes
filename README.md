@@ -111,6 +111,8 @@ curl -X 'POST' \
 }
 
 ```
+## Engineering Highlight: Custom PyTorch Routing vs. LLM Routing
+Relying on a massive frontier LLM to route every incoming query introduces unacceptable latency and API costs. I solved this by training a lightweight PyTorch intent classifier to act as the primary traffic controller, instantly routing queries to the correct LangGraph agent without incurring a generative AI inference penalty.
 
 ## 👨‍💻 Author
 
